@@ -25,10 +25,10 @@ public class Movie {
     /**
      * Overloaded constructor that assign the data values.
      *
-     * @param title movie title.
-     * @param year movie year.
+     * @param title     movie title.
+     * @param year      movie year.
      * @param imDBScore ImDB movie score.
-     * @param synopsis movie synopsis.
+     * @param synopsis  movie synopsis.
      */
     public Movie(String title, String year, Double imDBScore, String synopsis) {
         this.title = title;
@@ -47,7 +47,6 @@ public class Movie {
     }
 
     /**
-     *
      * @param id asdf
      */
     public void setId(String id) {
@@ -124,5 +123,14 @@ public class Movie {
      */
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
+    }
+
+    /**
+     * Evaluate valid fields.
+     *
+     * @return boolean evaluation value.
+     */
+    public boolean validFields() {
+        return title != null && year != null && imDBScore != null && synopsis != null;
     }
 }

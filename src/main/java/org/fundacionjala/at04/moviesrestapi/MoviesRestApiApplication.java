@@ -7,14 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Utility class for run Spring Boot application.
  */
 @SpringBootApplication
-public final class MoviesRestApiApplication {
-
-    /**
-     * Private constructor for utility class.
-     */
-    private MoviesRestApiApplication() {
-
-    }
+public class MoviesRestApiApplication {
 
     /**
      * Main method that performs the execution of the application.
