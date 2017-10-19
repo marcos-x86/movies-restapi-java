@@ -1,6 +1,8 @@
 package org.fundacionjala.at04.moviesrestapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.fundacionjala.at04.moviesrestapi.model.Movie;
 import org.fundacionjala.at04.moviesrestapi.repository.MovieCrudRepository;
+import org.fundacionjala.at04.moviesrestapi.repository.MovieRepository;
 
 /**
  * Movie controller class.
@@ -16,11 +19,11 @@ import org.fundacionjala.at04.moviesrestapi.repository.MovieCrudRepository;
 @RestController
 public class MovieController {
 
-    /**
-     * Private auto wired movie repository instance.
-     */
+    private static final String INVALID_DATA = "Invalid Data";
     @Autowired
-    private MovieCrudRepository movieRepository;
+    private MovieRepository movieRepository;
+    @Autowired
+    private MovieCrudRepository movieCrudRepository;
 
     /**
      * Get Request Handler.
@@ -29,7 +32,7 @@ public class MovieController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/movies")
     public Iterable<Movie> getAll() {
-        return movieRepository.findAll();
+        return movieCrudRepository.findAll();
     }
 
     /**
@@ -39,9 +42,12 @@ public class MovieController {
      * @return response body
      */
     @RequestMapping(method = RequestMethod.POST, value = "/movies")
-    public Movie post(@RequestBody Movie movie) {
-        movieRepository.save(movie);
-        return movie;
+    public ResponseEntity<?> post(@RequestBody Movie movie) {
+        if (movie.invalidFields() || movieRepository.findByTitle(movie.getTitle()).size() != 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(INVALID_DATA);
+        }
+        movieCrudRepository.save(movie);
+        return ResponseEntity.status(HttpStatus.CREATED).body(movie);
     }
 
     /**
@@ -51,8 +57,12 @@ public class MovieController {
      * @return response body
      */
     @RequestMapping(method = RequestMethod.GET, value = "/movies/{id}")
-    public Movie getById(@PathVariable String id) {
-        return movieRepository.findOne(id);
+    public ResponseEntity<?> getById(@PathVariable String id) {
+        Movie movie = movieCrudRepository.findOne(id);
+        if (movie != null) {
+            return ResponseEntity.ok(movie);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(INVALID_DATA);
     }
 
     /**
@@ -63,17 +73,17 @@ public class MovieController {
      * @return response body
      */
     @RequestMapping(method = RequestMethod.PUT, value = "/movies/{id}")
-    public Movie put(@PathVariable String id, @RequestBody Movie movie) {
-        Movie newMovie = movieRepository.findOne(id);
-        if (!(movie.validFields() && newMovie != null)) {
-            throw new IllegalArgumentException("Bad parameters");
+    public ResponseEntity<?> put(@PathVariable String id, @RequestBody Movie movie) {
+        Movie newMovie = movieCrudRepository.findOne(id);
+        if (movie.invalidFields() || newMovie == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(INVALID_DATA);
         }
         newMovie.setTitle(movie.getTitle());
         newMovie.setYear(movie.getYear());
         newMovie.setImDBScore(movie.getImDBScore());
         newMovie.setSynopsis(movie.getSynopsis());
-        movieRepository.save(newMovie);
-        return newMovie;
+        movieCrudRepository.save(newMovie);
+        return ResponseEntity.ok(newMovie);
     }
 
     /**
@@ -83,9 +93,12 @@ public class MovieController {
      * @return response body
      */
     @RequestMapping(method = RequestMethod.DELETE, value = "/movies/{id}")
-    public Movie delete(@PathVariable String id) {
-        Movie movie = movieRepository.findOne(id);
-        movieRepository.delete(movie);
-        return movie;
+    public ResponseEntity<?> delete(@PathVariable String id) {
+        Movie movie = movieCrudRepository.findOne(id);
+        if (movie != null) {
+            movieCrudRepository.delete(movie);
+            return ResponseEntity.ok(null);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(INVALID_DATA);
     }
 }

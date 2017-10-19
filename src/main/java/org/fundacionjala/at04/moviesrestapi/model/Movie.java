@@ -130,7 +130,7 @@ public class Movie {
      *
      * @return boolean evaluation value.
      */
-    public boolean validFields() {
-        return title != null && year != null && imDBScore != null && synopsis != null;
+    public boolean invalidFields() {
+        return title == null || year == null || imDBScore == null || synopsis == null;
     }
 }
