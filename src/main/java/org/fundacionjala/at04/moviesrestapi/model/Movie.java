@@ -1,5 +1,8 @@
 package org.fundacionjala.at04.moviesrestapi.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,9 +13,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Movie {
     @Id
     private String id;
+    @NotNull
+    @Size(min = 1)
     private String title;
+    @NotNull
+    @Size(min = 4)
     private String year;
+    @NotNull
     private Double imDBScore;
+    @NotNull
+    @Size(min = 1)
     private String synopsis;
 
     /**
@@ -47,7 +57,9 @@ public class Movie {
     }
 
     /**
-     * @param id asdf
+     * Setter method for id variable
+     *
+     * @param id value
      */
     public void setId(String id) {
         this.id = id;

@@ -7,7 +7,7 @@ import org.springframework.data.repository.Repository;
 import org.fundacionjala.at04.moviesrestapi.model.Movie;
 
 /**
- * Created by Marcos.
+ * Movie Repository class.
  */
 public interface MovieRepository extends Repository<Movie, String> {
 

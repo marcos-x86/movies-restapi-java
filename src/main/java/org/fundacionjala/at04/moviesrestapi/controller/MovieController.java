@@ -20,6 +20,7 @@ import org.fundacionjala.at04.moviesrestapi.repository.MovieRepository;
 public class MovieController {
 
     private static final String INVALID_DATA = "Invalid Data";
+    
     @Autowired
     private MovieRepository movieRepository;
     @Autowired

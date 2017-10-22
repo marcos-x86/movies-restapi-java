@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.fundacionjala.at04.moviesrestapi.model.Movie;
 
 /**
- * Created by Marcos.
+ * Movie CRUD Repository class.
  */
 public interface MovieCrudRepository extends CrudRepository<Movie, String> {
 
