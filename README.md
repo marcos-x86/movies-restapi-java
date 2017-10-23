@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/marcos-x86/movies-restapi.png?branch=develop)](https://travis-ci.org/marcos-x86/movies-restapi)
+[![Build Status](https://travis-ci.org/marcos-x86/movies-restapi-java.png?branch=develop)](https://travis-ci.org/marcos-x86/movies-restapi-java)
 [![codecov](https://codecov.io/gh/marcos-x86/movies-restapi-java/branch/develop/graph/badge.svg)](https://codecov.io/gh/marcos-x86/movies-restapi-java)
 
 # movies-restapi-java
@@ -14,6 +14,7 @@ Basic Java Spring Boot Rest API implementation using MongoDB for data persistenc
 2) Edit the application.properties file according to your environment parameters (example included).
 3) Open a terminal located in the root folder of the project.
 4) Build the project with the following command:
+
 Unix based systems:
 ```
 ./gradlew clean build
@@ -24,6 +25,7 @@ gradlew.bat clean build
 ```
 
 5) Run the service with the following command:
+
 Unix based systems:
 ```
 ./gradlew bootRun
@@ -33,7 +35,6 @@ Windows:
 gradlew.bat bootRun
 ```
 6) Or Run the service with the following command:
-Unix based systems:
 ```
 java -jar build/libs/movies-restapi-java-0.1.jar
 ```
@@ -50,6 +51,7 @@ Endpoint: http://localhost:{port}/api/v1/movies/{id}
 
 3) POST movie Request:
 Endpoint: http://localhost:{port}/api/v1/movies
+
 Request body example:
 ```
 {
@@ -72,6 +74,7 @@ Response body example:
 
 4) PUT movie Request:
 Endpoint: http://localhost:{port}/api/v1/movies/{id}
+
 Request body example:
 ```
 {
@@ -93,4 +96,5 @@ Request body example:
 ```
 
 5) DELETE movie Request:
+
 Endpoint: http://localhost:{port}/api/v1/movies/{id}
