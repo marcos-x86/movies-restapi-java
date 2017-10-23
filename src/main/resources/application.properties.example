@@ -1,3 +1,0 @@
-spring.data.mongodb.database=moviesdb
-spring.data.mongodb.host=10.28.130.4
-spring.data.mongodb.port=27017

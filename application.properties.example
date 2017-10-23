@@ -1,0 +1,6 @@
+server.port=8181
+spring.application.name=movies-restapi
+spring.data.mongodb.database=moviesdb
+spring.data.mongodb.host=10.28.130.6
+spring.data.mongodb.port=27017
+logging.file=logs/movies.log

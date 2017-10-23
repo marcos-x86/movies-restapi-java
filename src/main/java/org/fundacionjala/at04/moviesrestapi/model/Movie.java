@@ -18,7 +18,7 @@ public class Movie {
     private String title;
     @NotNull
     @Size(min = 4)
-    private String year;
+    private Integer year;
     @NotNull
     private Double imDBScore;
     @NotNull
@@ -40,7 +40,7 @@ public class Movie {
      * @param imDBScore ImDB movie score.
      * @param synopsis  movie synopsis.
      */
-    public Movie(String title, String year, Double imDBScore, String synopsis) {
+    public Movie(String title, Integer year, Double imDBScore, String synopsis) {
         this.title = title;
         this.year = year;
         this.imDBScore = imDBScore;
@@ -57,9 +57,9 @@ public class Movie {
     }
 
     /**
-     * Setter method for id variable
+     * Setter method for id variable.
      *
-     * @param id value
+     * @param id value.
      */
     public void setId(String id) {
         this.id = id;
@@ -88,7 +88,7 @@ public class Movie {
      *
      * @return year variable value.
      */
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
@@ -97,7 +97,7 @@ public class Movie {
      *
      * @param year value.
      */
-    public void setYear(String year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
@@ -144,5 +144,11 @@ public class Movie {
      */
     public boolean invalidFields() {
         return title == null || year == null || imDBScore == null || synopsis == null;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("{\"title\":\"%s\",\"year\":%d,\"imDBScore\":%.1f,\"synopsis\":\"%s\"}",
+                title, year, imDBScore, synopsis);
     }
 }
