@@ -2,20 +2,35 @@ package org.fundacionjala.at04.moviesrestapi.repository;
 
 import java.util.List;
 
-import org.springframework.data.repository.Repository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import org.fundacionjala.at04.moviesrestapi.model.Movie;
 
 /**
- * Created by Marcos.
+ * Movie CRUD Repository class.
  */
-public interface MovieRepository extends Repository<Movie, String> {
+public interface MovieRepository extends MongoRepository<Movie, String> {
 
     /**
-     * Perform a query to find Movies with a specified title.
+     * Find one Movie by Id.
+     *
+     * @param id movie id.
+     * @return movie object.
+     */
+    Movie findOne(String id);
+
+    /**
+     * Find movies by title.
      *
      * @param title movie title.
-     * @return a list with the query results.
+     * @return list of movie objects.
      */
     List<Movie> findByTitle(String title);
+
+    /**
+     * Delete movie.
+     *
+     * @param movie object.
+     */
+    void delete(Movie movie);
 }
