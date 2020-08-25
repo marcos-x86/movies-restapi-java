@@ -1,5 +1,6 @@
-package org.fundacionjala.at04.moviesrestapi.controller;
+package org.moviesrest.api.controller;
 
+import org.moviesrest.api.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.fundacionjala.at04.moviesrestapi.constant.ErrorResponse;
-import org.fundacionjala.at04.moviesrestapi.constant.Paths;
-import org.fundacionjala.at04.moviesrestapi.model.Movie;
-import org.fundacionjala.at04.moviesrestapi.repository.MovieRepository;
+import org.moviesrest.api.constant.ErrorResponse;
+import org.moviesrest.api.constant.Paths;
+import org.moviesrest.api.model.Movie;
 
 /**
  * Movie controller class.
