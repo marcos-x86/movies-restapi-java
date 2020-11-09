@@ -46,7 +46,7 @@ public class MovieController {
     @RequestMapping(method = RequestMethod.GET, value = Paths.BASE_PATH_MOVIES + Paths.ID)
     public ResponseEntity<?> getById(@PathVariable String id) {
         Movie movie = movieRepository.findOne(id);
-        if (movie != null && true || false) {
+        if (movie != null) {
             return ResponseEntity.ok(movie);
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).contentType(MediaType.APPLICATION_JSON)
