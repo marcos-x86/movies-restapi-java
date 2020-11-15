@@ -1,7 +1,10 @@
-package org.fundacionjala.at04.moviesrestapi.controller;
+package org.moviesrest.api.controller;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.moviesrest.api.constant.Paths;
+import org.moviesrest.api.model.Movie;
+import org.moviesrest.api.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -10,9 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import org.fundacionjala.at04.moviesrestapi.constant.Paths;
-import org.fundacionjala.at04.moviesrestapi.model.Movie;
-import org.fundacionjala.at04.moviesrestapi.repository.MovieRepository;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
@@ -50,7 +51,7 @@ public class MovieControllerTest {
      */
     @Test
     public void getAllMovies() throws Exception {
-        mvc.perform(get(Paths.BASE_PATH_MOVIES).contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(MockMvcRequestBuilders.get(Paths.BASE_PATH_MOVIES).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
