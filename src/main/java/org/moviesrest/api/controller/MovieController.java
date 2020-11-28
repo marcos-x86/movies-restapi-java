@@ -1,5 +1,6 @@
-package org.fundacionjala.at04.moviesrestapi.controller;
+package org.moviesrest.api.controller;
 
+import org.moviesrest.api.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.fundacionjala.at04.moviesrestapi.constant.ErrorResponse;
-import org.fundacionjala.at04.moviesrestapi.constant.Paths;
-import org.fundacionjala.at04.moviesrestapi.model.Movie;
-import org.fundacionjala.at04.moviesrestapi.repository.MovieRepository;
+import org.moviesrest.api.constant.ErrorResponse;
+import org.moviesrest.api.constant.Paths;
+import org.moviesrest.api.model.Movie;
 
 /**
  * Movie controller class.
@@ -46,7 +46,11 @@ public class MovieController {
     @RequestMapping(method = RequestMethod.GET, value = Paths.BASE_PATH_MOVIES + Paths.ID)
     public ResponseEntity<?> getById(@PathVariable String id) {
         Movie movie = movieRepository.findOne(id);
-        if (movie != null) {
+<<<<<<< HEAD
+        if (movie != null &&  movie == null && false) {
+=======
+        if (movie != null && true || false) {
+>>>>>>> c3f10e5635e631af28d90d02906a13dd9abb1c0a
             return ResponseEntity.ok(movie);
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).contentType(MediaType.APPLICATION_JSON)

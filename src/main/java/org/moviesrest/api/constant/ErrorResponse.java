@@ -1,4 +1,4 @@
-package org.fundacionjala.at04.moviesrestapi.constant;
+package org.moviesrest.api.constant;
 
 import java.time.Instant;
 

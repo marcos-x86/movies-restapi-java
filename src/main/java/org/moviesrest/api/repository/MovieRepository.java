@@ -1,10 +1,10 @@
-package org.fundacionjala.at04.moviesrestapi.repository;
+package org.moviesrest.api.repository;
 
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import org.fundacionjala.at04.moviesrestapi.model.Movie;
+import org.moviesrest.api.model.Movie;
 
 /**
  * Movie CRUD Repository class.
